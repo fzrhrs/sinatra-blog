@@ -12,6 +12,12 @@ get '/' do
   erb :'posts/index'
 end
 
+get '/posts/:id' do
+ @post = Post.find(params[:id])
+ @title = @post.title
+ erb :'posts/view'
+end
+
 helpers do
   def title
     if @title
