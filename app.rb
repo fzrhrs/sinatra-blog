@@ -18,6 +18,16 @@ get '/' do
   erb :'posts/index'
 end
 
+helpers do
+  def title
+    if @title
+      '#{@title}'
+    else
+      'Welcome.'
+    end
+  end
+end
+
 get '/posts/create' do
   @title = 'Create post'
   @post = Post.new
@@ -39,12 +49,14 @@ get '/posts/:id' do
   erb :'posts/view'
 end
 
-helpers do
-  def title
-    if @title
-      '#{@title}'
-    else
-      'Welcome.'
-    end
-  end
+get '/posts/:id/edit' do
+  @post = Post.find(params[:id])
+  @title = 'Edit Form'
+  erb :'posts/edit'
+end
+
+put '/posts/:id' do
+  @post = Post.find(params[:id])
+  @post.update(params[:post])
+  redirect '/posts/#{@post.id}'
 end
