@@ -60,3 +60,8 @@ put '/posts/:id' do
   @post.update(params[:post])
   redirect '/posts/#{@post.id}'
 end
+
+helpers do
+  include Rack::Utils
+  alias_method :h, :escape_html
+end
