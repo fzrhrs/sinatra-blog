@@ -10,6 +10,7 @@ gem 'sinatra-redirect-with-flash'
 
 group :development do
  gem 'sqlite3'
+ gem 'shotgun'
  gem 'tux'
 end
 
